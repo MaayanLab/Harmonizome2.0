@@ -1,0 +1,299 @@
+/* https://color.adobe.com/21-Flat-Business-Icons-color-theme-6339907/?showPublished=true
+ * https://color.adobe.com/Aspirin-C-color-theme-251864/?showPublished=true
+ * https://color.adobe.com/Ventana-Azul-color-theme-2159606/?showPublished=true
+ */
+/* Logo colors */
+/* The logo color is 36B1BF; this is slightly too light for text. */
+.landing-page .twitter-typeahead,
+.not-found-page .twitter-typeahead,
+.no-search-results-page .twitter-typeahead {
+  width: 100%;
+}
+/* Landing page
+ * ------------------------------------------------------------------------- */
+.landing-page {
+  margin-top: 100px;
+}
+.landing-page h1 {
+  border: none;
+  color: #555;
+  font-size: 40px;
+}
+.landing-page .instruction {
+  bottom: 2px;
+  color: #444444;
+  font-style: normal;
+  margin-right: 14px;
+  position: relative;
+}
+/* Search results page
+ * ------------------------------------------------------------------------- */
+.search-results-page form {
+  -moz-box-sizing: border-box;
+}
+.search-results-page h3 {
+  /* font-family: @font-family-base; */
+  font-weight: normal;
+  font-size: 18px;
+  border-bottom: none;
+  margin: 0;
+}
+.search-results-page table {
+  margin-top: 20px !important;
+}
+.search-results-page table td {
+  padding-bottom: 15px !important;
+}
+.search-results-page table thead {
+  display: none;
+}
+.search-results-page .filters li {
+  padding-left: 0;
+}
+.search-results-page .metadata {
+  padding-top: 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+.search-results-page .description {
+  color: #666666;
+}
+.search-results-page .description p {
+  margin: 0;
+}
+.search-results-page .filters-text {
+  margin-right: 15px;
+}
+.search-results-page .note {
+  font-size: 12px;
+}
+.search-results-page .badge.all,
+.search-results-page .badge.dataset,
+.search-results-page .badge.gene,
+.search-results-page .badge.gene-set {
+  color: white;
+}
+.search-results-page .badge.all a,
+.search-results-page .badge.dataset a,
+.search-results-page .badge.gene a,
+.search-results-page .badge.gene-set a {
+  color: white;
+}
+.search-results-page .badge.all {
+  background-color: #666666;
+}
+.search-results-page .badge.dataset {
+  background-color: #309fab;
+}
+.search-results-page .badge.gene {
+  background-color: #ed8c2b;
+}
+.search-results-page .badge.gene-set {
+  background-color: #ec1e8e;
+}
+/* Suggest page
+ * ------------------------------------------------------------------------- */
+.suggest-page ul li {
+  margin-bottom: 2px;
+  padding: 0;
+}
+.dataset-page table.gene-sets td,
+.gene-set-page table.genes td {
+  padding: 3px;
+}
+/* Dataset page
+ * ------------------------------------------------------------------------- */
+.dataset-page .glyphicon-th {
+  font-size: 5em;
+}
+/* About page
+ * ------------------------------------------------------------------------- */
+.about-page .stats ul {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 25px;
+}
+/* Contact page
+ * ------------------------------------------------------------------------- */
+.contact-page label {
+  display: block;
+  font-weight: normal;
+}
+.contact-page textarea {
+  height: 150px;
+}
+.contact-page label span {
+  color: #ff0000;
+}
+/* Mobile page
+ * ------------------------------------------------------------------------- */
+.mobile-page {
+  border-bottom: 1px solid #eeeeee;
+}
+.mobile-page ul.icons {
+  /* Approximately even with the top of the mobile device. */
+  margin-top: 64px;
+}
+.mobile-page i {
+  color: #555c6f;
+}
+.mobile-page image {
+  height: 600px;
+}
+.mobile-page h5 {
+  margin-top: 40px;
+}
+.mobile-page h5 a {
+  font-size: 24px;
+  font-weight: 300;
+}
+.mobile-page .app-store-links i {
+  position: relative;
+  top: -2px;
+}
+.mobile-page .app-store-links a {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  padding-left: 10px;
+}
+.mobile-page .app-store-links a:hover,
+.mobile-page .app-store-links a:active,
+.mobile-page .app-store-links a:focus {
+  text-decoration: none;
+  opacity: .7;
+}
+.mobile-page .app-store-links li.last {
+  margin-top: 20px;
+}
+.mobile-page .app-store-links li.last a {
+  color: #ec1e8e;
+}
+/* Pages with heat maps
+ * ------------------------------------------------------------------------- */
+.dataset-page .heat-map,
+.heat-map-page .heat-map {
+  margin-top: 10px;
+  display: none;
+}
+.dataset-page .heat-map image,
+.heat-map-page .heat-map image {
+  display: block;
+  max-width: 930px;
+  max-height: 733px;
+}
+.dataset-page .heat-map iframe,
+.heat-map-page .heat-map iframe {
+  height: 800px;
+  width: 100%;
+  border: none;
+}
+.dataset-page .heat-map .heat-map-header,
+.heat-map-page .heat-map .heat-map-header {
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.dataset-page .heat-map .heat-map-header p,
+.heat-map-page .heat-map .heat-map-header p {
+  margin: 0;
+}
+.dataset-page .heat-map .heat-map-header em,
+.heat-map-page .heat-map .heat-map-header em {
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.dataset-page .heat-maps image.preview {
+  width: 200px;
+}
+.dataset-page .heat-maps image.preview:hover {
+  cursor: pointer;
+  opacity: .75;
+}
+.heat-map-page.heat-map-with-input-genes-page .section,
+.heat-map-page.dataset-pair-heat-maps-page .section {
+  margin-bottom: 10px;
+}
+.heat-map-page.heat-map-with-input-genes-page .heat-map,
+.heat-map-page.dataset-pair-heat-maps-page .heat-map,
+.heat-map-page.heat-map-with-input-genes-page .button-wrapper,
+.heat-map-page.dataset-pair-heat-maps-page .button-wrapper {
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+}
+.heat-map-page.heat-map-with-input-genes-page textarea {
+  height: 200px;
+  margin-bottom: 10px;
+}
+.heat-map-page.heat-map-with-input-genes-page select {
+  width: 100%;
+}
+.heat-map-page.heat-map-with-input-genes-page #heat-map-wrapper {
+  display: none;
+}
+.heat-map-page.heat-map-with-input-genes-page #heat-map-wrapper .heat-map-link {
+  background-color: #eeeeee;
+  margin: 20px 0;
+  padding: 10px;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  display: none;
+}
+.heat-map-page.heat-map-with-input-genes-page .section {
+  margin-bottom: 10px;
+}
+.heat-map-page.dataset-heatmaps-page label,
+.heat-map-page.dataset-pair-heat-maps-page label {
+  margin-right: 10px;
+}
+/* Gene page
+ * ------------------------------------------------------------------------- */
+.gene-page .list p {
+  margin: 10px 0 5px 0;
+}
+.gene-page .list .association {
+  margin-right: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  display: inline-block;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+/* Gene set page
+ * ------------------------------------------------------------------------- */
+.gene-set-page .downloads-tools .enrichr {
+  padding: 2px;
+  position: relative;
+  top: 1px;
+}
+.gene-set-page .downloads-tools .enrichr image {
+  height: 28px;
+}
+.gene-set-page .gene-set-list.attribute-list {
+  display: none;
+}
+.gene-set-page .gene-set-list .last {
+  border-top: 1px solid #aaaaaa;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+/* Documentation page
+ * ------------------------------------------------------------------------- */
+.documentation-page h2 {
+  border-bottom: 1px solid #eeeeee;
+  font-size: 25px;
+}
+.documentation-page pre {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+}
+.documentation-page .mono {
+  background-color: #f8f8f8;
+  color: #d14;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  padding: 2px;
+}

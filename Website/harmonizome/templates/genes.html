@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="Resources-row" class="container-fluid">
+  <div class="container text-center">
+    <div class="scrollingTable">
+        <table id="example" class="display" cellspacing="0" width="100%" table-layout="fixed">
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>Gene Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for gene in genes %}
+           <tr>
+             <td><a href='/genepage/{{ gene.symbol }}'>{{ gene.symbol }}</a></td>
+             <td>{{ gene.name }}</td>
+           </tr>
+           {% endfor %}
+           </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

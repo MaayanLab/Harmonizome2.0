@@ -1,0 +1,307 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid">
+  <h1>Resources</h1>
+  <div class='col-sm-2' align="center">
+    <div id="resource_metric"></div>
+  </div>
+  <div class='col-sm-2' align="center">
+    <div id="dataset_metric"></div>
+  </div>
+  <div class='col-sm-2' align="center">
+    <div id="interaction_metric"></div>
+  </div>
+  <div class='col-sm-6'>
+    <br ><br >
+    <p>
+      <i>
+        Click on a dataset to access its downloads. Click on a column header to
+        sort the table by that column. <br >
+        Type in the search bar to filter. <br >
+        To download the data programmatically, use the <a href="">API</a> or this <a href="">Python script</a>.
+      </i>
+    </p>
+  </div>
+</div>
+<hr>
+
+<!-- <div id="Resources-row" class="container-fluid">
+
+    <div class="container text-center"> -->
+<div class="wrapper">
+  <div class="container">
+    <div class="download-page">
+      <div class="table-responsive">
+        <table class="table data-table">
+          <thead>
+            <tr>
+              <th>Resource</th>
+              <th>Dataset</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for resource in resources %}
+                  <tr>
+                    <td>
+                      <a href='/harmonizome/resourcepage/{{ resource.name }}'>
+                        {{ resource.name }}
+                      </a>
+                    </td>
+                    <td>
+                      {% for dataset in datasets %}
+                        {% if dataset.resource == resource.name %}
+                      <a href='/harmonizome/datasetpage/{{ dataset.name }}'>
+                        {{ dataset.name }}
+                      </a><br >
+                      {% endif %}
+                    {% endfor %}
+                    </td>
+                    <td>
+                      {% for dataset in datasets %}
+                        {% if dataset.resource == resource.name and dataset.description %}
+                      -{{ dataset.description }}<br >
+                      {% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+            {% endfor %}
+           </tbody>
+         </table>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/download-page.js') }}"></script>
+<script>
+	setupDataTable();
+</script>
+
+<script>
+  var pie1 = new d3pie("resource_metric", {
+    "header": {
+      "title": {
+        "text": "{{ resource_count }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Resources",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 150,
+      "canvasWidth": 150,
+      "pieInnerRadius": "75%",
+      "pieOuterRadius": "85%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ resource_count }},
+          "color": "#41d9f4"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+    // "misc": {
+    //   "colors": {
+    //     "segmentStroke": "#000000"
+    //   }
+    // },
+  });
+
+  var pie2 = new d3pie("dataset_metric", {
+    "header": {
+      "title": {
+        "text": "{{ dataset_count }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Datasets",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 150,
+      "canvasWidth": 150,
+      "pieInnerRadius": "75%",
+      "pieOuterRadius": "85%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ dataset_count }},
+          "color": "#f441a6"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+    // "misc": {
+    //   "colors": {
+    //     "segmentStroke": "#000000"
+    //   }
+    // },
+  });
+
+  var pie3 = new d3pie("interaction_metric", {
+    "header": {
+      "title": {
+        "text": 1118543,
+        "fontSize": 14,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Interactions",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 150,
+      "canvasWidth": 150,
+      "pieInnerRadius": "75%",
+      "pieOuterRadius": "85%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": 100,
+          "color": "#f4b942"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+    // "misc": {
+    //   "colors": {
+    //     "segmentStroke": "#000000"
+    //   }
+    // },
+  });
+</script>
+{% endblock %}

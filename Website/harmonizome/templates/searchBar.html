@@ -1,0 +1,73 @@
+{%- if request.path == "/harmonizome/" %}
+<div class="search-bar on-index-page">
+	<form accept-charset="utf-8" class="form-horizontal" action="search" method="GET">
+		<select class="entity-dropdown form-control all" name="t">
+			<option value="all">All</option>
+			<option value="gene">Genes</option>
+			<option value="geneSet">Gene Sets</option>
+			<option value="dataset">Datasets</option>
+		</select>
+
+    <div class="submit-button input-group-btn">
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</div>
+
+    <div class="input-bar">
+			<label for="q" class="sr-only">Search</label>
+      <input data-provide="typeahead" type="text" class="form-control" name="q">
+    </div>
+
+	</form>
+</div>
+
+<!-- <form id="search" method='post' action='/search/'>
+		<div class="form-group">
+		<div class="col-4">
+			<input id="hero-demo" name = 'gene' autofocus type="text" name="q" placeholder="Please input gene symbol to search the data" style="width:100%;max-width:600px;outline:0">
+		</div>
+	</div>
+	<script>
+		$(function(){
+						$('#hero-demo').autoComplete({
+								minChars: 2,
+								source: function(term, suggest){
+										term = term.toLowerCase();
+										var choices = genesList;
+										var suggestions = [];
+										for (i=0;i<choices.length;i++)
+												if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+										suggest(suggestions);
+								}
+						});
+					});
+		</script>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form> -->
+
+<div class="clear"></div>
+{% else %}
+<div class="search-bar in-navbar">
+	<form accept-charset="utf-8" class="form-horizontal" action="search" method="GET">
+		<select class="entity-dropdown form-control all" name="t">
+			<option value="all">All</option>
+			<option value="gene">Genes</option>
+			<option value="geneSet">Gene Sets</option>
+			<option value="dataset">Datasets</option>
+		</select>
+
+    <div class="submit-button input-group-btn">
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</div>
+
+    <div class="input-bar">
+			<label for="q" class="sr-only">Search</label>
+      <input data-provide="typeahead" type="text" class="form-control" name="q">
+    </div>
+
+</form>
+</div>
+{% endif %}

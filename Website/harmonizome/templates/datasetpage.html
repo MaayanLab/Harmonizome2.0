@@ -1,0 +1,570 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+<h1>{{ dataset.name }} <span class="note dataset">Dataset</span></h1>
+</div>
+<div class="col-md-8">
+  <br >
+  <table class="table">
+    <tr>
+        <td>Description</td>
+        <td>{{ dataset.description }}</td>
+    </tr>
+    <tr>
+        <td>Measurement</td>
+        <td>{{ dataset.measurement }}</td>
+    </tr>
+    <tr>
+        <td>Association</td>
+        <td>{{ dataset.association }}</td>
+    </tr>
+    <tr>
+        <td>Category</td>
+        <td>{{ dataset.category }}</td>
+    </tr>
+    <tr>
+        <td>Resource</td>
+        <td>
+            <a href="resourcepage/dataset.resource">
+                {{ dataset.resource }}
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Citation(s)</td>
+        <td>
+            <ul>
+            {%  for citation in citations %}
+              <li>
+                  {{ citation.citation }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+        </td>
+    </tr>
+  </table>
+</div>
+
+<div class="col-md-4">
+  <h3>Stats</h3>
+  <div class="col-md-4">
+    <div id="gene_metric"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="attribute_metric"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="association_metric"></div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <h1>Download Data</h1>
+  <br >
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ UPM.name }}</h4>
+          <a href='{{ UPM.external_link }}'><img src="{{ url_for('static', filename='images/UnfilterdMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/UnprocessedValue.png') }}" height="12" width="12"></img> Unprocessed Expression Value <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4 >{{ PM.name }}</h4>
+          <a href='{{ PM.external_link }}'><img src="{{ url_for('static', filename='images/FilterdMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/NormalizedValue.png') }}" height="12" width="12"></img> Normalized Expression Value <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ SM.name }}</h4>
+          <a href='{{ SM.external_link }}'><img src="{{ url_for('static', filename='images/StandardizedMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/StandardValue.png') }}" height="12" width="12"></img> Standardized Expression Value <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ TM.name }}</h4>
+          <a href='{{ TM.external_link }}'><img src="{{ url_for('static', filename='images/BinaryTertiaryMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/TertiaryValue.png') }}" height="12" width="12"></img> Tertiary/Binary Expression Value <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ UG.name }}</h4>
+          <a href='{{ UG.external_link }}'><img src="{{ url_for('static', filename='images/AttributeUpSet.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/UpGene.png') }}" height="12" width="12"></img> Up Regulated Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ DG.name }}</h4>
+          <a href='{{ DG.external_link }}'><img src="{{ url_for('static', filename='images/AttributeDownSet.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/DownGene.png') }}" height="12" width="12"></img> Down Regulated Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ UA.name }}</h4>
+          <a href='{{ UA.external_link }}'><img src="{{ url_for('static', filename='images/UpGeneSet.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/UpAttribute.png') }}" height="12" width="12"></img> Attribute Up Regulated by Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ DA.name }}</h4>
+          <a href='{{ DA.external_link }}'><img src="{{ url_for('static', filename='images/DownGeneSet.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/DownAttribute.png') }}" height="12" width="12"></img> Attribute Down Regulated by Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ GS.name }}</h4>
+          <a href='{{ GS.external_link }}'><img src="{{ url_for('static', filename='images/GeneSimilarityMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/GeneSimilarityValue.png') }}" height="12" width="12"></img> Attribute Down Regulated by Gene <br >
+          </div>
+          <br >
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ AS.name }}</h4>
+          <a href='{{ AS.external_link }}'><img src="{{ url_for('static', filename='images/AttributeSimilarityMatrix.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/AttributeSimilarityValue.png') }}" height="12" width="12"></img> Attribute Down Regulated by Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ GL.name }}</h4>
+          <a href='{{ GL.external_link }}'><img src="{{ url_for('static', filename='images/GeneList.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ AL.name }}</h4>
+          <a href='{{ AL.external_link }}'><img src="{{ url_for('static', filename='images/AttributeList.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+    <div class="col-md-3" align="center">
+      <div class="card">
+        <div class="card-container">
+          <h4>{{ E.name }}</h4>
+          <a href='{{ E.external_link }}'><img src="{{ url_for('static', filename='images/EdgeList.png') }}" style="padding: 10% 0;"></img></a>
+          <br >
+          <br >
+          <div align="left" style="position: absolute; bottom: 0; padding: 10px;">
+            <img src="{{ url_for('static', filename='images/Gene.png') }}" height="12" width="12"></img> Gene <br >
+            <img src="{{ url_for('static', filename='images/Attribute.png') }}" height="12" width="12"></img> Attribute <br >
+            <img src="{{ url_for('static', filename='images/UnprocessedValue.png') }}" height="12" width="12"></img> Weight <br >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="col-md-12">
+  <h1>Data Visulization</h1>
+  <div class="col-md-4" align="center">
+    <h5>Dataset</h5>
+    <img src="{{ url_for('static', filename='images/clustergrammer.svg') }}" height="300" width="300" alt=""></img>
+  </div>
+  <div class="col-md-4" align="center">
+    <h5>Cell Line Similarity</h5>
+    <img src="{{ url_for('static', filename='images/clustergrammer.svg') }}" height="300" width="300"></img>
+  </div>
+  <div class="col-md-4" align="center">
+    <h5>Gene Similarity</h5>
+    <img src="{{ url_for('static', filename='images/clustergrammer.svg') }}" height="300" width="300"></img>
+  </div>
+</div>
+
+
+
+<div class="col-md-12">
+  <h1>Gene Sets</h1>
+  <br >
+  <br >
+</div>
+
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
+
+
+<div class="col-md-12">
+  <div class="wrapper">
+    <div class="container">
+      <div class="download-page">
+        <div class="table-responsive">
+          <table class="table data-table">
+            <thead>
+              <tr>
+                <th>Cell Line</th>
+                <th>Gene Set</th>
+              </tr>
+            </thead>
+              <tbody>
+                {% for attribute in attributes %}
+                  <script>
+                    var data=[
+                      {% for association in associations %}
+                        {% if association.attribute == attribute[0] %}
+                          {name: '{{ association.gene }}', value: {{ association.weight }}},
+                        {% endif %}
+                      {% endfor %}
+                    ];
+                    var id = '{{ attribute[0] }}'
+                  </script>
+                <tr>
+                  <td>
+                    <b>{{  attribute[0] }}</a>
+                  </td>
+                  <td id='{{ attribute[0] }}'>
+                    <script type="text/javascript" src="{{ url_for('static', filename='js/geneSetBarChart.js') }}">
+                    </script>
+                  </td>
+                </tr>
+               {% endfor %}
+             </tbody>
+         </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/download-page.js') }}"></script>
+  <script>
+  	setupDataTable();
+  </script>
+
+</div>
+
+
+
+
+<script>
+  var pie1 = new d3pie("gene_metric", {
+    "header": {
+      "title": {
+        "text": "{{ dataset.numb_genes }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Genes",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 120,
+      "canvasWidth": 120,
+      "pieInnerRadius": "90%",
+      "pieOuterRadius": "100%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ dataset.numb_genes }},
+          "color": "#4286f4"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+  });
+
+  var pie2 = new d3pie("attribute_metric", {
+    "header": {
+      "title": {
+        "text": "{{ dataset.numb_associations }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Cell Lines",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 120,
+      "canvasWidth": 120,
+      "pieInnerRadius": "90%",
+      "pieOuterRadius": "100%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ dataset.numb_associations }},
+          "color": "#f4415c"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+  });
+  var pie3 = new d3pie("association_metric", {
+    "header": {
+      "title": {
+        "text": "{{ dataset.numb_gene_associations }}",
+        "fontSize": 16,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Associations",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 120,
+      "canvasWidth": 120,
+      "pieInnerRadius": "90%",
+      "pieOuterRadius": "100%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ dataset.numb_gene_associations }},
+          "color": "#d341f4"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 6
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+  });
+</script>
+
+{% endblock %}

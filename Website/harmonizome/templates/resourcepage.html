@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <div align = "center" >
+  <h1>{{ resource.name }}</h1>
+</div>
+<hr> -->
+<div class="container">
+  <div class="row">
+    <div class=col-2>
+      <strong style="font-size:15px">Name:</strong>
+    </div>
+    <div class=col-10>
+      <strong style="font-size:25px">{{ resource.name }}</strong>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class=col-2>
+      <strong style="font-size:15px">Description:</strong>
+    </div>
+    <div class=col-10>
+      {{ resource.description }}
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class=col-2>
+      <strong style="font-size:15px"> External Link:  </strong>
+    </div>
+    <div class=col-10>
+      <a href={{ resource.external_link }}>{{ resource.external_link }}</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class=col-2>
+      <strong style="font-size:15px"> Citation(s):</strong>
+    </div>
+    <div class=col-10>
+      {% for citation in citations %}
+      <li>{{ citation.citation }}</li>
+      {% endfor %}
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class=col-2>
+      <strong style="font-size:25px">  Dataset(s):</strong>
+    </div>
+    <div class=col-10>
+      {% for dataset in datasets %}
+      <li><a href='/harmonizome/datasetpage/{{ dataset.name }}'>{{ dataset.name }}</a></li>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
