@@ -44,6 +44,7 @@ class Gene(db.Model):
     pubmed_ids = db.Column(db.String(64), index=True, unique=False)
     refseq_ids = db.Column(db.String(200), index=True, unique=False)
     uniprot_id = db.Column(db.String(400), index=True, unique=False)
+    description = db.Column(db.String(4000), index=True, unique=False)
 
 
     def __repr__(self):

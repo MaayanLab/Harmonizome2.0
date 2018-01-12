@@ -1,25 +1,381 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block content %}
-<div align = "center" >
-  <h1>{{ gene.symbol }}</h1>
+<div>
+<h1>{{ gene.symbol }} <span class="note dataset">Gene</span></h1>
 </div>
-<div class="container">
-  <p><strong>Symbol:</strong> {{ gene.symbol }}</p>
-  <p><strong>Name:</strong> {{ gene.name }}</p>
-  <hr>
-  <p><strong>Old Symbol(s):</strong> {{ gene.old_symbol }}</p>
-  <p><strong>Old Name(s):</strong> {{ gene.old_name }}</p>
-  <hr>
-  <p><strong>Synonym(s):</strong> {{ gene.synonyms }}</p>
-  <p><strong>Name Synonym(s):</strong> {{ gene.name_synonyms }}</p>
-  <hr>
-  <p><strong>Chromosome:</strong> {{ gene.chromosome }}</p>
-  <hr>
-  <p><strong>Accession Number(s):</strong> {{ gene.accession_numbers }}</p>
-  <p><strong>Entrez Gene ID:</strong> {{ gene.entrez_gene_id }}</p>
-  <p><strong>Ensembl Gene ID:</strong> {{ gene.ensembl_gene_id }}</p>
-  <p><strong>Pubmed ID(s):</strong> {{ gene.pubmed_ids}}</p>
-  <p><strong>RefSeq ID(s):</strong> {{ gene.refseq_ids}}</p>
-  <p><strong>Uniprot ID:</strong> {{ gene.uniprot_id}}</p>
+<div class="col-md-8">
+  <br >
+  <table class="table">
+    <tr>
+      <td class="col-md-2">
+        Name
+      </td>
+      <td class="col-md-6">
+        {{ gene.name }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Synonym(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.synonyms }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Name Synonym(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.name_synonyms }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Old Symbol(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.old_symbol }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Old Name(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.name_synonyms }}
+      </td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <td class="col-md-2">
+        Chromosome
+      </td>
+      <td class="col-md-6">
+        {{ gene.chromosome }}
+      </td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <td class="col-md-2">
+        Accession Number(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.accession_numbers }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Entrez Gene ID
+      </td>
+      <td class="col-md-6">
+        <a href="http://www.ncbi.nlm.nih.gov/gene/{{ gene.entrez_gene_id.split('.')[0] }}">{{ gene.entrez_gene_id.split('.')[0] }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Ensembl Gene ID
+      </td>
+      <td class="col-md-6">
+        {{ gene.ensembl_gene_id }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Pubmed ID(s)
+      </td>
+      <td class="col-md-6">
+        <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ gene.pubmed_ids }}">{{ gene.pubmed_ids }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        RefSeq ID(s)
+      </td>
+      <td class="col-md-6">
+        {{ gene.refseq_ids }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
+        Uniprot ID
+      </td>
+      <td class="col-md-6">
+        {{ gene.uniprot_id }}
+      </td>
+    </tr>
+  </table>
 </div>
+
+<div class="col-md-4">
+  <h3>Stats</h3>
+  <div class="col-md-4">
+    <div id="association_metric"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="datasets_metric"></div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <h3>Description</h3>
+  {% if gene.description != '-' %}
+    <div style="margin-left: 10px;">{{ gene.description }}</div>
+  {% else%}
+    <div style="margin-left: 10px;">Sorry no description available at this time</div>
+  {% endif %}
+</div>
+
+<div class="col-md-4">
+  <br >
+  <h3>Access Data</h3>
+  <br >
+  <div class="col-md-2">
+    <h5>API</h5>
+  </div>
+  <div class="col-md-2">
+    <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/gene/{{gene.symbol}}" target="_blank">
+      <button class="btn btn-default glyphicon glyphicon-cloud-download" data-toggle="tooltip" data-placement="right" title="Access {{gene.symbol}} programmatically."></button>
+    </a>
+  </div>
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <h5>Download Associations</h5>
+  </div>
+  <div class="col-md-2">
+    <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/download/associations?gene={{gene.symbol}}" target="_blank">
+        <button class="btn btn-default glyphicon glyphicon-download-alt" data-toggle="tooltip" data-placement="right" title="Download {{gene.symbol}} associations."></button>
+    </a>
+  </div>
+</div>
+
+
+
+<!-- <div class="col-md-4">
+  <h3>Top Functional Associations</h3>
+  <div class="col-md-6">
+    <h5>Top + Association</h5>
+    {% for upAssociation in associations[0:10] %}
+      {% if upAssociation.weight > 0 %}
+        {{ upAssociation.attribute }} <br >
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="col-md-6">
+    <h5>Top - Association</h5>
+    {% for downAssociation in associations[-10:]%}
+      {% if downAssociation.weight < 0 %}
+        {{ downAssociation.attribute }} <br >
+      {% endif %}
+    {% endfor %}
+  </div>
+</div> -->
+
+<div class="col-md-12">
+
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
+
+  <h2>Functional Associations</h2>
+  <br >
+  <br >
+  <br >
+
+  <div class="col-md-12">
+    <div class="wrapper">
+      <div class="container">
+        <div class="download-page">
+          <div class="table-responsive">
+            <table class="table data-table">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Attributes</th>
+                </tr>
+              </thead>
+                <tbody>
+                  {% for dataset in datasets %}
+                    <script>
+                      var data=[
+                        {% for association in associations %}
+                          {% if association.dataset == dataset[0] %}
+                            {name: '{{ association.attribute }}', value: {{ association.weight }}},
+                          {% endif %}
+                        {% endfor %}
+                      ];
+                      var id = '{{ dataset[0].split(' ')[0] }}'
+                    </script>
+                  <tr>
+                    <td>
+                      <a href='/harmonizome/datasetpage/{{ dataset[0] }}'>
+                        {{ dataset[0] }}
+                      </a>
+                    </td>
+                    <td id='{{ dataset[0].split(' ')[0] }}'>
+                      <script type="text/javascript" src="{{ url_for('static', filename='js/geneSetBarChart.js') }}">
+                      </script>
+                    </td>
+                  </tr>
+                 {% endfor %}
+               </tbody>
+           </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="{{ url_for('static', filename='js/download-page.js') }}"></script>
+    <script>
+    	setupDataTable();
+    </script>
+
+</div>
+
+<script>
+  var pie1 = new d3pie("association_metric", {
+    "header": {
+      "title": {
+        "text": "{{ association_count }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Associations",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 120,
+      "canvasWidth": 120,
+      "pieInnerRadius": "90%",
+      "pieOuterRadius": "100%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ association_count }},
+          "color": "#42f4a7"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 10
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+  });
+
+  var pie1 = new d3pie("datasets_metric", {
+    "header": {
+      "title": {
+        "text": "{{ dataset_count }}",
+        "fontSize": 18,
+        "font": "Sans-serif"
+      },
+      "subtitle": {
+        "text": "Data Sets",
+        "color": "#999999",
+        "fontSize": 12,
+        "font": "Sans-serif"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "",
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 120,
+      "canvasWidth": 120,
+      "pieInnerRadius": "90%",
+      "pieOuterRadius": "100%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+
+      "content": [
+        {
+          "value": {{ dataset_count }},
+          "color": "#41bbf4"
+        },
+      ]
+
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage2",
+        "pieDistance": 10
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 7
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+  });
+</script>
 {% endblock %}

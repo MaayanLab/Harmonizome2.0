@@ -1,6 +1,4 @@
 //
-console.log(id);
-console.log(data);
 var margin = {
         top: 10,
         right: 20,
@@ -61,23 +59,24 @@ svg.selectAll(".bar")
     .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
     .attr("width", x.bandwidth)
     .on('mouseover', tool_tip.show)
-    .on('mouseout', tool_tip.hide);
+    .on('mouseout', tool_tip.hide)
+    .on('click', function(d) {location.href = url+d.name});
 
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + y(0) + ")")
     .call(xAxis)
-    .selectAll("text")
-      .attr("transform", "rotate(90)")
-      .attr("y", 0)
-      .attr("x", 10)
-      .attr("dy", ".35em")
-      .style("text-anchor", "start");
+    .selectAll("text").remove();
+      // .attr("transform", "rotate(90)")
+      // .attr("y", 0)
+      // .attr("x", 10)
+      // .attr("dy", ".35em")
+      // .style("text-anchor", "start");
 
 
-// svg.append("g")
-//     .attr("class", "y axis")
-//     .call(yAxis);
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
 
 
 

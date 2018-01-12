@@ -33,8 +33,15 @@ def datasetpage(variable):
     dataset = models.DataSet.query.filter_by(name=variable).first()
     files = models.Files.query.filter_by(dataset=variable).all()
     citations = models.Citations.query.filter_by(resource=variable).all()
-    associations = models.Associations.query.filter_by(dataset=variable).order_by(models.Associations.weight.desc()).all()
-    attributes = models.Associations.query.filter_by(dataset=variable).with_entities(models.Associations.attribute).distinct()
+    attributes = models.Associations.query.filter_by(dataset=variable).with_entities(models.Associations.attribute).distinct().limit(3).all()
+    associations = []
+    for thing in attributes:
+        for attribute in thing:
+            upassociations = models.Associations.query.filter_by(dataset=variable, attribute=attribute).order_by(models.Associations.weight.desc()).limit(50).all()
+            downassociations = models.Associations.query.filter_by(dataset=variable, attribute=attribute).order_by(models.Associations.weight).limit(50).all()
+            associations += upassociations
+            associations += downassociations[::-1]
+
 
     for file in files:
         if 'Matrix Normalized' in file.name:
@@ -43,8 +50,8 @@ def datasetpage(variable):
             UPM = file
         elif 'Matrix Standardized' in file.name:
             SM = file
-        elif 'Matrix Tertiary' in file.name or 'Matrix Binary' in file.name:
-            TM = file
+        # elif 'Matrix Tertiary' in file.name or 'Matrix Binary' in file.name:
+        #     TM = file
         elif 'Up Gene' in file.name:
             UG = file
         elif 'Down Gene' in file.name:
@@ -70,7 +77,7 @@ def datasetpage(variable):
                                 PM=PM,
                                 UPM=UPM,
                                 SM=SM,
-                                TM=TM,
+                                # TM=TM,
                                 UG=UG,
                                 DG=DG,
                                 UA=UA,
@@ -85,3 +92,27 @@ def datasetpage(variable):
                                 attributes=attributes)
     else:
         return render_template('datasetpage.html', title='Not Found', dataset=dataset)
+
+
+@app.route('/harmonizome/genepage/<variable>')
+def genapage(variable):
+    association_count = models.Associations.query.filter_by(gene=variable).count()
+    dataset_count = models.Associations.query.filter_by(gene=variable).with_entities(models.Associations.dataset).distinct().count()
+    gene = models.Gene.query.filter_by(symbol=variable).first()
+    associations = models.Associations.query.filter_by(gene=variable).order_by(models.Associations.weight.desc()).all()
+    datasets= models.Associations.query.filter_by(gene=variable).with_entities(models.Associations.dataset).distinct()
+    if gene != None:
+        return render_template('genepage.html',
+                                title=gene.symbol,
+                                gene=gene,
+                                association_count=association_count,
+                                dataset_count=dataset_count,
+                                associations=associations,
+                                datasets=datasets)
+    else:
+        return render_template('genenotfound.html', title='Gene Not Found', gene=variable)
+
+@app.route('/harmonizome/datavisulization')
+def datavisulization():
+    return render_template('datavisulization.html',
+                                title='Data Visulization')
