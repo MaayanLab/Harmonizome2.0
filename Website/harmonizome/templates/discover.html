@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- load D3js -->
+<script src="//d3plus.org/js/d3.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="col-md-12">
+  <h1>Discover</h1>
+  <br >
+  <br >
+
+  <div class="col-md-3">
+    <h4 align="center">Selection #1</h4>
+    <h5>Category</h5>
+    <select class="form-control" id="choice1">
+        <option value="">None</option>
+        <option value="Gene">Gene</option>
+        <option value="Celline">Celline</option>
+        <option value="Tissue<">Tissue</option>
+        <option value="Drug">Drug</option>
+    </select>
+    <h5>Specific</h5>
+    <select class="form-control" id="choice2">
+        <option value=""></option>
+        {% for gene in genes %}
+        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <h4 align="center">Selection #2</h4>
+    <h5>Category</h5>
+    <select class="form-control" id="choice1">
+        <option value="">None</option>
+        <option value="Gene">Gene</option>
+        <option value="Celline">Celline</option>
+        <option value="Tissue<">Tissue</option>
+        <option value="Drug">Drug</option>
+    </select>
+    <h5>Specific</h5>
+    <select class="form-control" id="choice2">
+        <option value=""></option>
+        {% for gene in genes %}
+        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <h4 align="center">Selection #3</h4>
+    <h5>Category</h5>
+    <select class="form-control" id="choice1">
+        <option value="">None</option>
+        <option value="Gene">Gene</option>
+        <option value="Celline">Celline</option>
+        <option value="Tissue<">Tissue</option>
+        <option value="Drug">Drug</option>
+    </select>
+    <h5>Specific</h5>
+    <select class="form-control" id="choice2">
+        <option value=""></option>
+        {% for gene in genes %}
+        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <h4 align="center">Selection #4</h4>
+    <h5>Category</h5>
+    <select class="form-control" id="choice1">
+        <option value="">None</option>
+        <option value="Gene">Gene</option>
+        <option value="Celline">Celline</option>
+        <option value="Tissue<">Tissue</option>
+        <option value="Drug">Drug</option>
+    </select>
+    <h5>Specific</h5>
+    <select class="form-control" id="choice2">
+        <option value=""></option>
+        {% for gene in genes %}
+        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        {% endfor %}
+    </select>
+  </div>
+
+<script>
+$("#choice1").change(function () {
+    if (typeof $(this).data('options') === "undefined") {
+        /*Taking an array of all options-2 and kind of embedding it on the select1*/
+        $(this).data('options', $('#choice2 option').clone());
+    }
+    var id = $(this).val();
+    var options = $(this).data('options').filter('[data-option=' + id + ']');
+    $('#choice2').html(options);
+    // $('#choice2').selectpicker('refresh');
+});
+</script>
+
+{% endblock %}

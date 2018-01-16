@@ -116,3 +116,11 @@ def genapage(variable):
 def datavisulization():
     return render_template('datavisulization.html',
                                 title='Data Visulization')
+
+
+@app.route('/harmonizome/discover')
+def discover():
+    genes = models.Gene.query.with_entities(models.Gene.symbol).limit(10).all()
+    return render_template('discover.html',
+                                title='Discover',
+                                genes=genes)
