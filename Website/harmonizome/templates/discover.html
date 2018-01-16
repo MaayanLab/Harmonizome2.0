@@ -16,92 +16,295 @@
   <br >
   <br >
 
-  <div class="col-md-3">
+  <div class="col-md-4">
+
     <h4 align="center">Selection #1</h4>
-    <h5>Category</h5>
-    <select class="form-control" id="choice1">
-        <option value="">None</option>
-        <option value="Gene">Gene</option>
-        <option value="Celline">Celline</option>
-        <option value="Tissue<">Tissue</option>
-        <option value="Drug">Drug</option>
-    </select>
-    <h5>Specific</h5>
-    <select class="form-control" id="choice2">
-        <option value=""></option>
+
+    <div class="form-group">
+      <h5>Select Category</h5>
+      <select class="form-control" name="category1" size="1">
+        <option></option>
+        <option>Gene</option>
+        <option>Cell Line</option>
+        <option>Drug</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h5>Select</h5>
+      <select class="form-control" name="sub_category1" size="1">
+        <option class="Sub1" id=""></option>
         {% for gene in genes %}
-        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        <option class="Sub1" id="Gene">{{ gene[0] }}</option>
         {% endfor %}
-    </select>
+        {% for cell_line in cell_lines %}
+        <option class="Sub1" id="Cell Line">{{ cell_line[0] }}</option>
+        {% endfor %}
+        <option class="Sub1" id="Drug">Test Drug</option>
+      </select>
+    </div>
+
   </div>
-  <div class="col-md-3">
+
+  <div class="col-md-4">
+
     <h4 align="center">Selection #2</h4>
-    <h5>Category</h5>
-    <select class="form-control" id="choice1">
-        <option value="">None</option>
-        <option value="Gene">Gene</option>
-        <option value="Celline">Celline</option>
-        <option value="Tissue<">Tissue</option>
-        <option value="Drug">Drug</option>
-    </select>
-    <h5>Specific</h5>
-    <select class="form-control" id="choice2">
-        <option value=""></option>
+
+    <div class="form-group">
+      <h5>Select Category</h5>
+      <select class="form-control" name="category2" size="1">
+        <option></option>
+        <option>Gene</option>
+        <option>Cell Line</option>
+        <option>Drug</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h5>Select</h5>
+      <select class="form-control" name="sub_category2" size="1">
+        <option class="Sub2" id=""></option>
         {% for gene in genes %}
-        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        <option class="Sub2" id="Gene">{{ gene[0] }}</option>
         {% endfor %}
-    </select>
+        {% for cell_line in cell_lines %}
+        <option class="Sub2" id="Cell Line">{{ cell_line[0] }}</option>
+        {% endfor %}
+        <option class="Sub2" id="Drug">Test Drug</option>
+      </select>
+    </div>
+
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-4">
+
     <h4 align="center">Selection #3</h4>
-    <h5>Category</h5>
-    <select class="form-control" id="choice1">
-        <option value="">None</option>
-        <option value="Gene">Gene</option>
-        <option value="Celline">Celline</option>
-        <option value="Tissue<">Tissue</option>
-        <option value="Drug">Drug</option>
-    </select>
-    <h5>Specific</h5>
-    <select class="form-control" id="choice2">
-        <option value=""></option>
-        {% for gene in genes %}
-        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
-        {% endfor %}
-    </select>
-  </div>
 
-  <div class="col-md-3">
-    <h4 align="center">Selection #4</h4>
-    <h5>Category</h5>
-    <select class="form-control" id="choice1">
-        <option value="">None</option>
-        <option value="Gene">Gene</option>
-        <option value="Celline">Celline</option>
-        <option value="Tissue<">Tissue</option>
-        <option value="Drug">Drug</option>
-    </select>
-    <h5>Specific</h5>
-    <select class="form-control" id="choice2">
-        <option value=""></option>
+    <div class="form-group">
+      <h5>Select Category</h5>
+      <select class="form-control" name="category3" size="1">
+        <option></option>
+        <option>Gene</option>
+        <option>Cell Line</option>
+        <option>Drug</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h5>Select</h5>
+      <select class="form-control" name="sub_category3" size="1">
+        <option class="Sub3" id=""></option>
         {% for gene in genes %}
-        <option data-option="Gene" hide value="M">{{gene.symbol}}</option>
+        <option class="Sub3" id="Gene">{{ gene[0] }}</option>
         {% endfor %}
-    </select>
+        {% for cell_line in cell_lines %}
+        <option class="Sub3" id="Cell Line">{{ cell_line[0] }}</option>
+        {% endfor %}
+        <option class="Sub3" id="Drug">Test Drug</option>
+      </select>
+    </div>
+
   </div>
 
 <script>
-$("#choice1").change(function () {
-    if (typeof $(this).data('options') === "undefined") {
-        /*Taking an array of all options-2 and kind of embedding it on the select1*/
-        $(this).data('options', $('#choice2 option').clone());
-    }
-    var id = $(this).val();
-    var options = $(this).data('options').filter('[data-option=' + id + ']');
-    $('#choice2').html(options);
-    // $('#choice2').selectpicker('refresh');
-});
+  var c10 = d3.scale.category10();
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", 1200)
+    .attr("height", 800);
+</script>
+
+<script>
+
+  $(function(){
+    $('option.Sub1').each(function() {
+      $(this).hide();
+    });
+      // When your year changes...
+    $('[name="category1"]').change(function(){
+      var category = $(this).val();
+      // window.alert($(this).val())
+      $('option.Sub1').each(function() {
+        var test = $(this).attr('id');
+        if(test == category){
+          $(this).show();
+        }
+        else {
+          $(this).hide();
+        }
+
+          });
+    });
+  })
+
+  $(function(){
+    $('option.Sub2').each(function() {
+      $(this).hide();
+    });
+      // When your year changes...
+    $('[name="category2"]').change(function(){
+      var category = $(this).val();
+      // window.alert($(this).val())
+      $('option.Sub2').each(function() {
+        var test = $(this).attr('id');
+        if(test == category){
+          $(this).show();
+        }
+        else {
+          $(this).hide();
+        }
+
+          });
+    });
+  })
+
+  $(function(){
+    $('option.Sub3').each(function() {
+      $(this).hide();
+    });
+      // When your year changes...
+    $('[name="category3"]').change(function(){
+      var category = $(this).val();
+      // window.alert($(this).val())
+      $('option.Sub3').each(function() {
+        var test = $(this).attr('id');
+        if(test == category){
+          $(this).show();
+        }
+        else {
+          $(this).hide();
+        }
+
+          });
+    });
+  })
+
+</script>
+
+<script>
+  $(function(){
+    $('[name="sub_category1"]').change(function(){
+      var category = $(this).val();
+      // window.alert($(this).val())
+
+      var data = {
+           nodes: [{
+             name: "A",
+             x: 500,
+             y: 300
+           }
+         ],
+
+           links: [{
+             source: 0,
+             target: 1
+           },
+         ]
+
+         };
+
+     var nodes = svg.selectAll("node")
+       .data(data.nodes)
+       .enter()
+       .append("circle")
+       .attr("class", "node")
+       .attr("cx", function(d) {
+         return d.x
+       })
+       .attr("cy", function(d) {
+         return d.y
+       })
+       .attr("r", 30)
+       .attr("fill", function(d, i) {
+         return c10(1);
+       })
+       // .call(drag);
+
+        });
+      })
+
+      $(function(){
+        $('[name="sub_category2"]').change(function(){
+          var category = $(this).val();
+          // window.alert($(this).val())
+
+          var data = {
+               nodes: [{
+                 name: "A",
+                 x: 700,
+                 y: 100
+               }
+             ],
+
+               links: [{
+                 source: 0,
+                 target: 1
+               },
+             ]
+
+             };
+
+         var nodes = svg.selectAll("node")
+           .data(data.nodes)
+           .enter()
+           .append("circle")
+           .attr("class", "node")
+           .attr("cx", function(d) {
+             return d.x
+           })
+           .attr("cy", function(d) {
+             return d.y
+           })
+           .attr("r", 30)
+           .attr("fill", function(d, i) {
+             return c10(7);
+           })
+           // .call(drag);
+
+            });
+          })
+
+          $(function(){
+            $('[name="sub_category3"]').change(function(){
+              var category = $(this).val();
+              // window.alert($(this).val())
+
+              var data = {
+                   nodes: [{
+                     name: "A",
+                     x: 900,
+                     y: 300
+                   }
+                 ],
+
+                   links: [{
+                     source: 0,
+                     target: 1
+                   },
+                 ]
+
+                 };
+
+             var nodes = svg.selectAll("node")
+               .data(data.nodes)
+               .enter()
+               .append("circle")
+               .attr("class", "node")
+               .attr("cx", function(d) {
+                 return d.x
+               })
+               .attr("cy", function(d) {
+                 return d.y
+               })
+               .attr("r", 30)
+               .attr("fill", function(d, i) {
+                 return c10(3);
+               })
+               // .call(drag);
+
+                });
+              })
+
 </script>
 
 {% endblock %}
