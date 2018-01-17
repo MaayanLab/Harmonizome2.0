@@ -126,3 +126,12 @@ def discover():
                                 title='Discover',
                                 genes=genes,
                                 cell_lines=cell_lines)
+
+@app.route('/harmonizome/complexquery')
+def complexquery():
+    genes = models.Gene.query.with_entities(models.Gene.symbol).limit(10).all()
+    cell_lines = models.Associations.query.with_entities(models.Associations.attribute).distinct().all()
+    return render_template('complexquery.html',
+                                title='Query',
+                                genes=genes,
+                                cell_lines=cell_lines)

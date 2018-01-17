@@ -1,0 +1,263 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- load D3js -->
+<script src="//d3plus.org/js/d3.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="col-md-12" style="margin-bottom:50px;">
+  <h1>Complex Query</h1>
+  <br >
+  <br >
+  <div class="col-md-12">
+    <h3>Select Input</h3>
+
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" id="category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+
+
+      <h5 align="center">Select Gene</h5>
+      <div class="form-group" style="width:120px; margin-left:15px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Gene">A1BG</option>
+          <option class="Sub1" id="Gene">A1BG-AS1</option>
+          <option class="Sub1" id="Gene">A1CF</option>
+          <option class="Sub1" id="Gene">A2M</option>
+          <option class="Sub1" id="Gene">A2M-AS1</option>
+          <option class="Sub1" id="Gene">A2ML1</option>
+        </select>
+      </div>
+
+      <h5 align="center">Regulation</h5>
+      <div class="form-group" style="width:80px; margin-left:35px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id="Regulation">Up</option>
+          <option class="Sub1" id="Regulation">Down</option>
+
+        </select>
+      </div>
+
+    </div>
+
+    <div class="col-md-1" style="margin-top:70px">
+      <h5 align="center">Relation</h5>
+      <div class="form-group" style="width:75px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id="Regulation">In</option>
+          <option class="Sub1" id="Regulation">Not In</option>
+          <option class="Sub1" id="Regulation">And</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" name="sub_category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+      <h5 align="center">Select Gene</h5>
+      <div class="form-group" style="width:120px; margin-left:15px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Gene">A1BG</option>
+          <option class="Sub1" id="Gene">A1BG-AS1</option>
+          <option class="Sub1" id="Gene">A1CF</option>
+          <option class="Sub1" id="Gene">A2M</option>
+          <option class="Sub1" id="Gene">A2M-AS1</option>
+          <option class="Sub1" id="Gene">A2ML1</option>
+        </select>
+      </div>
+      <h5 align="center">Regulation</h5>
+      <div class="form-group" style="width:80px; margin-left:35px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id="Regulation">Up</option>
+          <option class="Sub1" id="Regulation">Down</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-1" style="margin-top:70px">
+      <h5 align="center">Relation</h5>
+      <div class="form-group" style="width:75px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id="Regulation">In</option>
+          <option class="Sub1" id="Regulation">Not In</option>
+          <option class="Sub1" id="Regulation">And</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" name="sub_category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+      <h5 align="center">Select Cell Line</h5>
+      <div class="form-group" style="width:120px; margin-left:15px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="CellLine">KPNSI9S</option>
+          <option class="Sub1" id="CellLine">NB1</option>
+          <option class="Sub1" id="CellLine">NH6</option>
+          <option class="Sub1" id="CellLine">CHP126</option>
+          <option class="Sub1" id="CellLine">HUCCT1</option>
+          <option class="Sub1" id="CellLine">SNU1079</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-1" style="margin-top:70px">
+      <h5 align="center">Relation</h5>
+      <div class="form-group" style="width:75px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id="Regulation">In</option>
+          <option class="Sub1" id="Regulation">Not In</option>
+          <option class="Sub1" id="Regulation">And</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" name="sub_category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+      <h5 align="center">Select Drug</h5>
+      <div class="form-group" style="width:120px; margin-left:15px;">
+        <select class="form-control" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Drug">Flumazenil</option>
+          <option class="Sub1" id="Drug">Sumatriptan</option>
+          <option class="Sub1" id="Drug">Propericiazine</option>
+          <option class="Sub1" id="Drug">Tarenflurbil</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1" style="margin-top:70px">
+      <h5 align="center">Add</h5>
+      <button class="btn btn-default glyphicon glyphicon-plus" style="margin-left:10px;"></button>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <br >
+    <br >
+    <div>
+      <button type="button" class="btn">Reset</button>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h3>Select Output</h3>
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" name="sub_category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <h5 align="center">Select Category</h5>
+      <div class="form-group">
+        <select class="form-control" name="sub_category1" size="1">
+          <option class="Sub1" id=""></option>
+          <option class="Sub1" id="Category">Gene/Gene Family</option>
+          <option class="Sub1" id="Category">Cell Line/Tissue</option>
+          <option class="Sub1" id="Category">Drug/Chemical</option>
+          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
+          <option class="Sub1" id="Category">Pathway</option>
+          <option class="Sub1" id="Category">Gene Set</option>
+        </select>
+      </div>
+      </div>
+      <div class="col-md-1">
+        <h5 align="center">Add</h5>
+        <button class="btn btn-default glyphicon glyphicon-plus" style="margin-left:10px;"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div  align="center">
+      <button type="button" class="btn btn-lg btn-block" style="width:60%;">Query</button>
+    </div>
+    <br >
+    <br >
+    <br >
+    <br >
+
+  </div>
+
+</div>
+
+<script>
+
+  $(function(){
+    $('#geneList1').each(function() {
+      $(this).hide();
+    });
+  })
+
+  $(document).ready(function(){
+      $('#category1').on('change', function() {
+        if ( this.value == 'Gene/Gene Family')
+        {
+          $("#geneList1").show();
+        }
+      });
+  });
+
+</script>
+
+
+
+{% endblock %}
