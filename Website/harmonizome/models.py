@@ -11,6 +11,7 @@ class DataSet(db.Model):
     category = db.Column(db.String(120), index=True, unique=False)
     sub_category = db.Column(db.String(120), index=True, unique=False)
     resource = db.Column(db.String(120), index=True, unique=False)
+    views = db.Column(db.Integer, index=True, unique=False)
     numb_genes = db.Column(db.Integer, index=True, unique=False)
     numb_associations = db.Column(db.Integer, index=True, unique=False)
     numb_gene_associations = db.Column(db.Integer, index=True, unique=False)

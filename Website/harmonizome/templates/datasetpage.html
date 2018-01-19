@@ -36,17 +36,26 @@
             <ul>
             {%  for citation in citations %}
               <li>
-                  {{ citation.citation }}</a>
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22460905">{{ citation.citation }}</a>
               </li>
               {% endfor %}
             </ul>
         </td>
     </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <td>Previous Version(s)</td>
+      <td><a href="">2015</a></td
+    </tr>
   </table>
+
 </div>
 
 <div class="col-md-4">
-  <h3>Stats</h3>
+  <h3>Statistics</h3>
   <div class="col-md-4">
     <div id="gene_metric"></div>
   </div>
@@ -245,7 +254,65 @@
 
 </div>
 
+<div class="col-md-6">
+  <br >
+  <br >
+  <h1>Access Data Programmatically</h1>
+  <br >
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+    <div class="col-md-4" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>JASON API</h5>
+          <a href='api/1.0/dataset/CCLE+Cell+Line+Gene+Expression+Profiles'><img src="{{ url_for('static', filename='images/rest-api.jpg') }}"  height="60" width="80" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>Python Module API</h5>
+          <a href='static/harmonizomeapi.py'><img src="{{ url_for('static', filename='images/api.png') }}"  height="90" width="90" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>Python Script</h5>
+          <a href='static/harmonizomedownloader.py'><img src="{{ url_for('static', filename='images/simple-gears-vector.png') }}"  height="90" width="90" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-1">
+</div>
+
+<div class="col-md-5">
+  <br >
+  <br >
+  <h1>Data Processing Script</h1>
+  <br >
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+    <div class="col-md-5" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>Jupyter Notebook</h5>
+          <a href='{{ AL.external_link }}'><img src="{{ url_for('static', filename='images/JupyterNotebook.png') }}"  height="80" width="80" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="col-md-12">
+  <br >
+  <br >
 
   <script>
     function popitup(url) {
@@ -345,7 +412,7 @@
   var pie1 = new d3pie("gene_metric", {
     "header": {
       "title": {
-        "text": "{{ dataset.numb_genes }}",
+        "text": 18022,
         "fontSize": 18,
         "font": "Sans-serif"
       },
@@ -415,7 +482,7 @@
   var pie2 = new d3pie("attribute_metric", {
     "header": {
       "title": {
-        "text": "{{ dataset.numb_associations }}",
+        "text": 1035,
         "fontSize": 18,
         "font": "Sans-serif"
       },
@@ -484,7 +551,7 @@
   var pie3 = new d3pie("association_metric", {
     "header": {
       "title": {
-        "text": "{{ dataset.numb_gene_associations }}",
+        "text": 749551,
         "fontSize": 16,
         "font": "Sans-serif"
       },

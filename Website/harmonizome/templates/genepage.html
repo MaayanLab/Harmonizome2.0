@@ -16,12 +16,21 @@
     </tr>
     <tr>
       <td class="col-md-2">
+        Description
+      </td>
+      <td class="col-md-6">
+        {{ gene.description }}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-md-2">
         Synonym(s)
       </td>
       <td class="col-md-6">
         {{ gene.synonyms }}
       </td>
     </tr>
+    {% if gene.name_synonyms[0]  != '-' %}
     <tr>
       <td class="col-md-2">
         Name Synonym(s)
@@ -30,6 +39,7 @@
         {{ gene.name_synonyms }}
       </td>
     </tr>
+    {% endif %}
     <tr>
       <td class="col-md-2">
         Old Symbol(s)
@@ -38,14 +48,16 @@
         {{ gene.old_symbol }}
       </td>
     </tr>
+    {% if gene.old_name[0]  != '-' %}
     <tr>
       <td class="col-md-2">
         Old Name(s)
       </td>
       <td class="col-md-6">
-        {{ gene.name_synonyms }}
+        {{ gene.old_name }}
       </td>
     </tr>
+    {% endif %}
   </table>
 
   <table class="table">
@@ -122,39 +134,39 @@
 </div>
 
 <div class="col-md-4">
+  <br >
+  <br >
+  <h3>Access Data Programmatically</h3>
+  <br >
+
+  <div class="col-md-12" style="padding-bottom: 20px">
+    <div class="col-md-6" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>JASON API</h5>
+          <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/gene/{{gene.symbol}}" title="Access {{gene.symbol}} programmatically."><img src="{{ url_for('static', filename='images/rest-api.jpg') }}"  height="60" width="80" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" align="center">
+      <div class="card"  style="height:180px">
+        <div class="card-container">
+          <h5>Download Associations</h5>
+          <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/download/associations?gene={{gene.symbol}}" title="Download {{gene.symbol}} associations."><img src="{{ url_for('static', filename='images/download.png') }}"  height="70" width="70" style="margin-top: 20px;"></img></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-md-12">
   <h3>Description</h3>
   {% if gene.description != '-' %}
     <div style="margin-left: 10px;">{{ gene.description }}</div>
   {% else%}
     <div style="margin-left: 10px;">Sorry no description available at this time</div>
   {% endif %}
-</div>
-
-<div class="col-md-4">
-  <br >
-  <h3>Access Data</h3>
-  <br >
-  <div class="col-md-2">
-    <h5>API</h5>
-  </div>
-  <div class="col-md-2">
-    <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/gene/{{gene.symbol}}" target="_blank">
-      <button class="btn btn-default glyphicon glyphicon-cloud-download" data-toggle="tooltip" data-placement="right" title="Access {{gene.symbol}} programmatically."></button>
-    </a>
-  </div>
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-4">
-    <h5>Download Associations</h5>
-  </div>
-  <div class="col-md-2">
-    <a href="http://amp.pharm.mssm.edu/Harmonizome/api/1.0/download/associations?gene={{gene.symbol}}" target="_blank">
-        <button class="btn btn-default glyphicon glyphicon-download-alt" data-toggle="tooltip" data-placement="right" title="Download {{gene.symbol}} associations."></button>
-    </a>
-  </div>
-</div>
-
-
+</div> -->
 
 <!-- <div class="col-md-4">
   <h3>Top Functional Associations</h3>

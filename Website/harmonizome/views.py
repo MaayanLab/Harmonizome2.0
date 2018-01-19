@@ -24,9 +24,8 @@ def index():
 def resources():
     resource_count = models.Resources.query.count()
     dataset_count = models.DataSet.query.count()
-    resources = models.Resources.query.order_by(models.Resources.name).all()
-    datasets = models.DataSet.query.with_entities(models.DataSet.name, models.DataSet.resource, models.DataSet.description).distinct()
-    return render_template('resources.html', title="Resources", resource_count=resource_count, dataset_count=dataset_count, resources=resources, datasets=datasets)
+    datasets = models.DataSet.query.distinct()
+    return render_template('resources.html', title="Datasets", resource_count=resource_count, dataset_count=dataset_count, resources=resources, datasets=datasets)
 
 @app.route('/harmonizome/datasetpage/<variable>')
 def datasetpage(variable):

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container-fluid">
-  <h1>Resources</h1>
+  <h1>Datasets</h1>
   <div class='col-sm-2' align="center">
     <div id="resource_metric"></div>
   </div>
@@ -33,36 +33,46 @@
     <div class="download-page">
       <div class="table-responsive">
         <table class="table data-table">
+          <col width="170">
+          <col width="40">
+          <col width="280">
+          <col width="40">
+          <col width="5">
+          <col width="1">
           <thead>
             <tr>
-              <th>Resource</th>
               <th>Dataset</th>
+              <th>Resource</th>
               <th>Description</th>
+              <th>Category</th>
+              <th>Attribute</th>
+              <th>Views</th>
             </tr>
           </thead>
           <tbody>
-            {% for resource in resources %}
+            {% for dataset in datasets %}
                   <tr>
                     <td>
-                      <a href='/harmonizome/resourcepage/{{ resource.name }}'>
-                        {{ resource.name }}
+                      <a href='/harmonizome/datasetpage/{{ dataset.name }}'>
+                        {{ dataset.name }}
                       </a>
                     </td>
                     <td>
-                      {% for dataset in datasets %}
-                        {% if dataset.resource == resource.name %}
-                      <a href='/harmonizome/datasetpage/{{ dataset.name }}'>
-                        {{ dataset.name }}
-                      </a><br >
-                      {% endif %}
-                    {% endfor %}
+                      <a href='/harmonizome/resourcepage/{{ dataset.resource }}'>
+                        {{ dataset.resource }}
+                      </a>
                     </td>
                     <td>
-                      {% for dataset in datasets %}
-                        {% if dataset.resource == resource.name and dataset.description %}
-                      -{{ dataset.description }}<br >
-                      {% endif %}
-                    {% endfor %}
+                      {{ dataset.description }}
+                    </td>
+                    <td>
+                      {{ dataset.category }}
+                    </td>
+                    <td>
+                      {{ dataset.sub_category }}
+                    </td>
+                    <td style="background-color:#f2f2f2" align="center">
+                      <strong>{{ dataset.views }}</strong>
                     </td>
                   </tr>
             {% endfor %}
@@ -82,7 +92,7 @@
   var pie1 = new d3pie("resource_metric", {
     "header": {
       "title": {
-        "text": "{{ resource_count }}",
+        "text": "{{ 66 }}",
         "fontSize": 18,
         "font": "Sans-serif"
       },
@@ -113,7 +123,7 @@
 
       "content": [
         {
-          "value": {{ resource_count }},
+          "value": {{ 66 }},
           "color": "#41d9f4"
         },
       ]
@@ -157,7 +167,7 @@
   var pie2 = new d3pie("dataset_metric", {
     "header": {
       "title": {
-        "text": "{{ dataset_count }}",
+        "text": "{{ 114 }}",
         "fontSize": 18,
         "font": "Sans-serif"
       },
@@ -188,7 +198,7 @@
 
       "content": [
         {
-          "value": {{ dataset_count }},
+          "value": {{ 114 }},
           "color": "#f441a6"
         },
       ]
@@ -232,7 +242,7 @@
   var pie3 = new d3pie("interaction_metric", {
     "header": {
       "title": {
-        "text": 1118543,
+        "text": 71927784,
         "fontSize": 14,
         "font": "Sans-serif"
       },
