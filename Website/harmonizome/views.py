@@ -134,3 +134,7 @@ def complexquery():
                                 title='Query',
                                 genes=genes,
                                 cell_lines=cell_lines)
+
+@app.route('/harmonizome/test')
+def test():
+    return render_template('test.html')

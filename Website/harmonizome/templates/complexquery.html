@@ -1,319 +1,160 @@
 {% extends "layout.html" %}
 {% block content %}
-<!-- load D3js -->
-<script src="//d3plus.org/js/d3.js"></script>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<div class="col-md-12" style="margin-bottom:50px;">
+<div class="col-md-12">
   <h1>Complex Query</h1>
+  <p class="instruction">Search the Harmonizome by entering your query in the box below.</p>
+  <p class="instruction">Not sure what, or how, to ask? Check out our examples below for some food for thought.</p>
   <br >
   <br >
-  <div class="col-md-12">
-    <h3>Select Input</h3>
-
-    <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" id="category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-
-
-      <h5 align="center">Select Gene Set</h5>
-      <!--
-      <div class="form-group" style="width:120px; margin-left:15px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Gene">GPCRs</option>
-          <option class="Sub1" id="Gene">A1BG</option>
-          <option class="Sub1" id="Gene">A1BG-AS1</option>
-          <option class="Sub1" id="Gene">A1CF</option>
-          <option class="Sub1" id="Gene">A2M</option>
-          <option class="Sub1" id="Gene">A2M-AS1</option>
-          <option class="Sub1" id="Gene">A2ML1</option>
-        </select>
-      </div>
-       -->
-      <!-- <div class="input-group">
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+  <br >
+  <br >
+  <br >
+  <div class="col-md-12" align="center">
+    <h4>What would you like to know:</h4>
+    <br >
+    {% include 'searchBar.html' %}
+  </div>
+  <div class="col-md-12" style="padding-top:40px; padding-left:250px">
+    <div class="col-md-9">
+      <div id="queryAssumptions">
+        <div style="padding:20px;">
+          <p>Assuming "LRRK2" is a gene | use as a <a href="#">protein</a> instead</p>
+          <p>Assuming "Parkinsons" is Parkinson's Disease </p>
+          <p>Assuming "Crohn's" is Crohn's Disease </p>
+          <p>Assuming query "All Datasets" | use specific dataset <select><option>All DataSets</option></select> instead</p>
         </div>
-      </div> -->
-
-      <h5 align="center">Regulation</h5>
-      <div class="form-group" style="width:80px; margin-left:35px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id="Regulation">Up</option>
-          <option class="Sub1" id="Regulation">Down</option>
-
-        </select>
-      </div>
-
-    </div>
-
-    <div class="col-md-1" style="margin-top:70px">
-      <h5 align="center">Relation</h5>
-      <div class="form-group" style="width:75px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id="Regulation">In</option>
-          <option class="Sub1" id="Regulation">Not In</option>
-          <option class="Sub1" id="Regulation">And</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" name="sub_category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene/Gene Family</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-      <h5 align="center">Select Gene</h5>
-      <div class="form-group" style="width:120px; margin-left:15px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Gene">A1BG</option>
-          <option class="Sub1" id="Gene">A1BG-AS1</option>
-          <option class="Sub1" id="Gene">A1CF</option>
-          <option class="Sub1" id="Gene">A2M</option>
-          <option class="Sub1" id="Gene">A2M-AS1</option>
-          <option class="Sub1" id="Gene">A2ML1</option>
-        </select>
-      </div>
-      <h5 align="center">Regulation</h5>
-      <div class="form-group" style="width:80px; margin-left:35px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id="Regulation">Up</option>
-          <option class="Sub1" id="Regulation">Down</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- <div class="col-md-1" style="margin-top:70px">
-      <h5 align="center">Relation</h5>
-      <div class="form-group" style="width:75px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id="Regulation">In</option>
-          <option class="Sub1" id="Regulation">Not In</option>
-          <option class="Sub1" id="Regulation">And</option>
-        </select>
-      </div>
-    </div> -->
-
-    <!-- <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" name="sub_category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene/Gene Family</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-      <h5 align="center">Select Cell Line</h5>
-      <div class="form-group" style="width:120px; margin-left:15px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="CellLine">KPNSI9S</option>
-          <option class="Sub1" id="CellLine">NB1</option>
-          <option class="Sub1" id="CellLine">NH6</option>
-          <option class="Sub1" id="CellLine">CHP126</option>
-          <option class="Sub1" id="CellLine">HUCCT1</option>
-          <option class="Sub1" id="CellLine">SNU1079</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="col-md-1" style="margin-top:70px">
-      <h5 align="center">Relation</h5>
-      <div class="form-group" style="width:75px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id="Regulation">In</option>
-          <option class="Sub1" id="Regulation">Not In</option>
-          <option class="Sub1" id="Regulation">And</option>
-        </select>
-      </div>
-    </div> -->
-
-
-    <!-- <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" name="sub_category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene/Gene Family</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-      <h5 align="center">Select Drug</h5>
-      <div class="form-group" style="width:120px; margin-left:15px;">
-        <select class="form-control" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Drug">Flumazenil</option>
-          <option class="Sub1" id="Drug">Sumatriptan</option>
-          <option class="Sub1" id="Drug">Propericiazine</option>
-          <option class="Sub1" id="Drug">Tarenflurbil</option>
-        </select>
-      </div>
-    </div> -->
-    <div class="col-md-1" style="margin-top:70px">
-      <h5 align="center">Add</h5>
-      <button class="btn btn-default glyphicon glyphicon-plus" style="margin-left:10px;"></button>
-    </div>
-  </div>
-  <div class="col-md-12">
-    <br >
-    <br >
-    <div>
-      <button type="button" class="btn">Reset</button>
-    </div>
-  </div>
-
-  <div class="col-md-12">
-    <h3>Select Output</h3>
-    <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" name="sub_category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene/Gene Family</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <h5 align="center">Select Category</h5>
-      <div class="form-group">
-        <select class="form-control" name="sub_category1" size="1">
-          <option class="Sub1" id=""></option>
-          <option class="Sub1" id="Category">Gene/Gene Family</option>
-          <option class="Sub1" id="Category">Cell Line/Tissue</option>
-          <option class="Sub1" id="Category">Drug/Chemical</option>
-          <option class="Sub1" id="Category">Phenotype/Disease/Side Effect</option>
-          <option class="Sub1" id="Category">Pathway</option>
-          <option class="Sub1" id="Category">Gene Set</option>
-        </select>
-      </div>
-      </div>
-      <div class="col-md-1">
-        <h5 align="center">Add</h5>
-        <button class="btn btn-default glyphicon glyphicon-plus" style="margin-left:10px;"></button>
       </div>
     </div>
   </div>
-
-  <div class="col-md-12">
-    <div>
-      <button type="button" class="btn btn-lg btn-block" style="width:20%;"> Submit Query</button>
-    </div>
-    <br >
-    <br >
-    <br >
-    <br >
-
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="input-group">
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+  <div class="col-md-12"  style="padding-top:40px; padding-left:250px">
+    <div class="col-md-9">
+      <div id="queryInterpretaion">
+        <div style="padding:20px;">
+          <p><strong>Input interpretation:</strong></p>
+          <table  id="queryResultsTable" style="font-size: 11px;">
+            <tr>
+              <td style="background-color:#e5e5e5"><a href="#">LRRK2 </a> (gene)</td>
+              <td style="background-color:white;">in</td>
+              <td style="background-color:#e5e5e5"><a href="#">Parkinson's</a> (disease)</td>
+              <td>in</td>
+              <td style="background-color:#e5e5e5"><a href="#">All Datasets</a></td>
+            </tr>
+          </table>
+          <table  id="queryResultsTable" style="font-size: 11px;">
+            <tr>
+              <td style="background-color:#efefef">and</td>
+            </tr>
+          </table>
+          <table  id="queryResultsTable" style="font-size: 11px;">
+            <tr>
+              <td><a href="#">LRRK2 </a> (gene)</td>
+              <td style="background-color:white;">in</td>
+              <td style="background-color:#e5e5e5"><a href="#">Crohn's</a> (disease)</td>
+              <td>in</td>
+              <td style="background-color:#e5e5e5"><a href="#">All Datasets</a></td>
+            </tr>
+          </table>
         </div>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="input-group">
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+  <div class="col-md-12"  style="padding-top:40px; padding-left:250px; padding-bottom:50px;">
+    <div class="col-md-9">
+      <div id="queryResults">
+        <div style="padding:20px;">
+          <p><strong>Results:</strong></p>
+          <table id="queryResultsTable">
+            <thead>
+              <th>Gene</th>
+              <th>Disease</th>
+              <th>Dataset</th>
+              <th>Value</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="background-color:#e5e5e5"><a href="#">LRRK2</a></td>
+                <td style="background-color:#e5e5e5"><a href="#">Parkinson's</a></td>
+                <td><a href="#">Human Phenotype Ontology</a></td>
+                <td>+1</td>
+              </tr>
+              <tr>
+                <td style="background-color:#e5e5e5"><a href="#">LRRK2</a></td>
+                <td style="background-color:#e5e5e5"><a href="#">Parkinson's</a></td>
+                <td><a href="#">Jesen Lab Diseases</a></td>
+                <td>+1</td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="queryResultsTable">
+            <thead>
+              <th>Gene</th>
+              <th>Disease</th>
+              <th>Dataset</th>
+              <th>Value</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="background-color:#e5e5e5"><a href="#">LRRK2</a></td>
+                <td style="background-color:#e5e5e5"><a href="#">Crohn's</a></td>
+                <td><a href="#">Human Phenotype Ontology</a></td>
+                <td>+1</td>
+              </tr>
+              <tr>
+                <td style="background-color:#e5e5e5"><a href="#">LRRK2</a></td>
+                <td style="background-color:#e5e5e5"><a href="#">Crohn's</a></td>
+                <td><a href="#">Jesen Lab Diseases</a></td>
+                <td>+1</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding-top:20px;">
+            <a href="#"><img src="{{ url_for('static', filename='images/downloadSmall.png') }}" height="20"> Downlad Results</img><a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- <div class="col-md-12" align="center" style="padding-top:150px;">
+    <div class="col-md-4">
+      <a href="#" style="color:black;">
+        <div class="queryExample">
+          <div class="queryExample-container">
+            <h4>Example</h4>
+            <strong>Gene expressed in Disese(s) or Phenotype(s)</strong>
+            LRRK2 expressed in Parkinsons also expressed in Crohn's
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" style="color:black;">
+        <div class="queryExample">
+          <div class="queryExample-container">
+            <h4>Example</h4>
+            <strong>Gene expressed in Tissue expressed in Cell Line</strong>
+            GPCRs that are normally expressed only in the brain, are highly expressed in cancer cell lines
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" style="color:black;">
+        <div class="queryExample">
+          <div class="queryExample-container">
+            <h4>Example</h4>
+            <strong>Drug Pathway Signiture Similarity</strong><br >
+            Which drug has the most simlilar gene expression to the Alpha 6 Beta 4 signaling pathway
+          </div>
+        </div>
+      </a>
+    </div>
+  </div> -->
 
 </div>
 
-<script>
-
-  $(function(){
-    $('#geneList1').each(function() {
-      $(this).hide();
-    });
-  })
-
-  $(document).ready(function(){
-      $('#category1').on('change', function() {
-        if ( this.value == 'Gene/Gene Family')
-        {
-          $("#geneList1").show();
-        }
-      });
-  });
-
-</script>
 
 
 

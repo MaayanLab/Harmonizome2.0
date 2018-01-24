@@ -1,0 +1,95 @@
+id,value
+CellLine,
+CellLine.Lung,
+CellLine.Lung.IMR90,
+CellLine.Lung.A549,
+CellLine.Lung.MRC5,
+CellLine.Lung.H1299,
+CellLine.Lung.NHBE,
+CellLine.Lung.NCIH460,
+CellLine.Lung.BEAS2B,
+CellLine.Lymphocyte, 3.1
+CellLine.Lymphocyte.JURKAT, 3.1
+CellLine.Lymphocyte.MT4, 3.1
+CellLine.Lymphocyte.BJAB, 3.1
+CellLine.Lymphocyte.HELCELLS, 3.1
+CellLine.Lymphocyte.HL60, 3.1
+CellLine.Lymphocyte.RAJI, 3.1
+CellLine.Breast/Mammary, 3.1
+CellLine.Breast/Mammary.MCF7, 3.1
+CellLine.Breast/Mammary.MC10, 3.1
+CellLine.Breast/Mammary.MDAMB231, 3.1
+CellLine.Breast/Mammary.SKBR3, 3.1
+CellLine.Breast/Mammary.MDAMB468, 3.1
+CellLine.Breast/Mammary.MDAMB453, 3.1
+CellLine.Fibroblast, 3.1
+CellLine.Fibroblast.BJ, 3.1
+CellLine.Fibroblast.KB, 3.1
+CellLine.Fibroblast.HT1080, 3.1
+CellLine.Fibroblast.NHDF, 3.1
+CellLine.Fibroblast.TIG, 3.1
+CellLine.Prostate, 3.1
+CellLine.Prostate.LNCAP, 3.1
+CellLine.Prostate.PC3, 3.1
+CellLine.Prostate.DU145, 3.1
+CellLine.Prostate.C42, 3.1
+CellLine.Other, 3.1
+CellLine.Other.NALM6, 3.1
+CellLine.Other.DAOY, 3.1
+CellLine.Other.JEG3, 3.1
+CellLine.Other.BEWO, 3.1
+CellLine.Kidney, 3.1
+CellLine.Kidney.293T, 3.1
+CellLine.Kidney.HEK293, 3.1
+CellLine.Kidney.293F, 3.1
+CellLine.Kidney.FLPINTREX293, 3.1
+CellLine.Blood, 3.1
+CellLine.Blood.THP1, 3.1
+CellLine.Blood.PLB985, 3.1
+CellLine.Blood.CEM, 3.1
+CellLine.Blood.HELAT4, 3.1
+CellLine.Ovary, 3.1
+CellLine.Ovary.SKOV3, 3.1
+CellLine.Ovary.2008, 3.1
+CellLine.Ovary.OVCAR3, 3.1
+CellLine.Skin, 3.1
+CellLine.Skin.HNSCC, 3.1
+CellLine.Skin.A431, 3.1
+CellLine.Sarcoma, 3.1
+CellLine.Sarcoma.LHCNM2, 3.1
+CellLine.Sarcoma.U2OS, 3.1
+CellLine.Lymphoid, 3.1
+CellLine.Lymphoid.REH, 3.1
+CellLine.Lymphoid.RPMI8226, 3.1
+CellLine.Colon, 3.1
+CellLine.Colon.HCT116, 3.1
+CellLine.Colon.HT29, 3.1
+CellLine.Cervix, 3.1
+CellLine.Cervix.HELA, 3.1
+CellLine.Cervix.HELAS3, 3.1
+CellLine.Brain, 3.1
+CellLine.Brain.SHSY5Y, 3.1
+CellLine.Brain.SKNMC, 3.1
+CellLine.Bone, 3.1
+CellLine.Bone.K562, 3.1
+CellLine.Bone.U2OS, 3.1
+CellLine.Uterus, 3.1
+CellLine.Uterus.BEWO, 3.1
+CellLine.Pancreas, 3.1
+CellLine.Pancreas.PANC1, 3.1
+CellLine.Neuroblastoma, 3.1
+CellLine.Neuroblastoma.IMR32, 3.1
+CellLine.Macrophage, 3.1
+CellLine.Macrophage.U937, 3.1
+CellLine.Liver, 3.1
+CellLine.Liver.HEPG2, 3.1
+CellLine.Keratinocyte, 3.1
+CellLine.Keratinocyte.HACAT, 3.1
+CellLine.Glial, 3.1
+CellLine.Glial.H4, 3.1
+CellLine.Connective, 3.1
+CellLine.Connective.G401, 3.1
+CellLine.BoneMarrow, 3.1
+CellLine.BoneMarrow.KG1CELLS, 3.1
+CellLine.Bladder, 3.1
+CellLine.Bladder.T24, 3.1

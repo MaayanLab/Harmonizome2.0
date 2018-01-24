@@ -194,9 +194,13 @@
   <script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
 
   <h2>Functional Associations</h2>
+  <p class="instruction">{{ gene.symbol }} has 2,535 functional associations with biological entities spanning 7 categories (molecular profile, chemical, functional term, phrase or reference, disease, phenotype or trait, structural feature, cell line, cell type or tissue, gene, protein or microRNA) extracted from 59 datasets.</p>
+  <p class="instruction">Mouse over a bar to see the coreponding attribute and Standerdized value (a value between -1 and 1 indicating strength of association).</p>
+  <p class="instruction">Click on a bar to go to that attribute's page.</p>
+  <p class="instruction">Click on a the dataset name to go to the dataset page.</p>
   <br >
   <br >
-  <br >
+
 
   <div class="col-md-12">
     <div class="wrapper">
@@ -249,11 +253,300 @@
 
 </div>
 
+<div class="col-md-12">
+  <h2> Predicted Functional Associations</h2>
+  <p class="instruction">Predicted Functional Associations across sevral datasets for {{ gene.symbol }}.</p>
+  <p class="instruction">Mouse over a bar to see the coreponding attribute and Z-score of prediction.</p>
+  <p class="instruction">Click on a bar to go to that attribute's page.</p>
+  <p class="instruction">Click on a the dataset name to go to the dataset page.</p>
+  <br >
+  <br >
+
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
+
+  <div class="col-md-12">
+    <div class="wrapper">
+      <div class="container">
+        <div class="download-page">
+          <div class="table-responsive">
+            <table id="" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                          <th>Dataset</th>
+                          <th>Attributes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <script>
+                        var data=[
+                              {name: 'homocysteine metabolic process (GO:0050667)', value: 7.81420320},
+                              {name: 'postsynaptic membrane organization (GO:0001941)', value: 6.76004906},
+                              {name: 'microtubule nucleation (GO:0007020)', value: 6.12319079},
+                              {name: 'regulation of plasminogen activation (GO:0010755)', value: 6.06824489},
+                              {name: 'regulation of synapse structural plasticity (GO:0051823)', value: 5.85832974},
+                              {name: 'folic acid-containing compound biosynthetic process (GO:0009396)', value: 5.73172207},
+                              {name: 'cysteine metabolic process (GO:0006534)', value: 5.72365553},
+                              {name: 'sulfur amino acid catabolic process (GO:0000098)', value: 5.70237078},
+                              {name: 'epithelial to mesenchymal transition involved in endocardial cushion formation (GO:0003198)', value: 5.57857851},
+                              {name: 'RNA splicing, via endonucleolytic cleavage and ligation (GO:0000394)', value: 5.54439961},
+                              {name: 'tRNA splicing, via endonucleolytic cleavage and ligation (GO:0006388)', value: 5.54180456},
+                              {name: 'synaptic vesicle maturation (GO:0016188)', value: 5.47244422},
+                              {name: 'regulation of short-term neuronal synaptic plasticity (GO:0048172)', value: 5.41915343},
+                              {name: 'positive regulation of synaptic transmission, dopaminergic (GO:0032226)', value: 5.40154923},
+                        ];
+                        var id = 'Test'
+                      </script>
+                      <tr>
+                        <td>
+                          <a href='#'>
+                            Predicted biological processes (GO)
+                          </a>
+                        </td>
+                        <td id='Test'>
+                          <script type="text/javascript" src="{{ url_for('static', filename='js/geneSetBarChart.js') }}">
+                          </script>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    <script>
+      $(document).ready(function() {
+          $('table.display').DataTable();
+      } );
+    </script>
+  </div>
+
+  <div class="col-md-12">
+
+    <h2>Most similar genes based on co-expression</h2>
+    <p class="instruction">Most Similar Genes to {{ gene.symbol }} based on.</p>
+    <p class="instruction">Mouse over a bar to see the coreponding attribute and Person Correlation value of the Similarity.</p>
+    <p class="instruction">Click on a bar to go to that attribute's page.</p>
+    <p class="instruction">Click on a the dataset name to go to the dataset page.</p>
+    <br >
+    <br >
+  </div>
+  <div class="col-md-12">
+    <div class="wrapper">
+      <div class="container">
+        <div class="download-page">
+          <div class="table-responsive">
+            <table id="" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    </thead>
+                    <tbody>
+                      <script>
+                        var data=[
+                              {name: 'AFF2', value: 0.5878},
+                              {name: 'CLASP2', value: 0.5378},
+                              {name: 'HCN4', value: 0.4989},
+                              {name: 'SHISA7', value: 0.4739},
+                              {name: 'GM4202', value: 0.4644},
+                              {name: 'ZFP738', value: 0.4559},
+                              {name: 'CEP104', value: 0.4357},
+                              {name: 'SRRM4', value: 0.4354},
+                              {name: 'GLTSCR1', value: 0.4117},
+                              {name: 'DRD1', value: 0.4109},
+                              {name: 'GPR88', value: 0.4077},
+                              {name: 'CELF2', value: 0.4049},
+                              {name: 'HRH3', value: 0.4043},
+                              {name: 'PDE1B', value: 0.4019},
+                              {name: 'GNG7', value: 0.3989},
+                              {name: 'ADCY5', value: 0.3946},
+                              {name: 'PPP1R1B', value: 0.3918},
+                              {name: '4931428F04RIK', value: 0.3889},
+                              {name: 'ATCAY', value: 0.3834},
+                              {name: 'TMEM35', value: 0.3826},
+                              {name: 'PTPN5', value: 0.3784},
+                              {name: 'RASD2', value: 0.372},
+                              {name: 'DHX8', value: 0.3714},
+                              {name: 'PDE10A', value: 0.3702},
+                              {name: 'RGS9', value: 0.3654},
+                        ];
+                        var id = 'Test2'
+                      </script>
+                      <tr>
+                        <td>
+                          Similar Genes
+                        </td>
+                        <td id='Test2'>
+                          <script type="text/javascript" src="{{ url_for('static', filename='js/geneSetBarChart.js') }}">
+                          </script>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+        $('table.display').DataTable();
+    } );
+  </script>
+
+
+<div class="col-md-12">
+  <div class="col-md-6">
+  <h2>Tissue</h2>
+  <p class="instruction">Mouse over a leaf node to get the mean quantile normalized log count value of {{ gene.symbol }} for that tissue.</p>
+    <div id="tissueImage" style="padding-top:30px; padding-bottom:70px;">
+
+      <script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
+
+      <script>
+      var height = 800
+      var width = 500
+      var svg = d3.select("#tissueImage").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+      // Define the div for the tooltip
+      var tool_tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-8, 0])
+        .html(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1)+"<br > <br >"+ "2.8" });
+        svg.call(tool_tip);
+
+      var g2 = svg.append("g")
+          .attr("transform", "translate(50,0)");
+
+      var tree = d3.tree()
+          .size([height, width - 160]);
+
+      var stratify = d3.stratify()
+          .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
+
+      d3.csv("{{ url_for('static', filename='tissues.csv') }}", function(error, data) {
+        if (error) throw error;
+
+        var root = stratify(data)
+            .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
+
+        var link = g2.selectAll(".link")
+          .data(tree(root).links())
+          .enter().append("path")
+            .attr("class", "link")
+            .attr("d", d3.linkHorizontal()
+                .x(function(d) { return d.y; })
+                .y(function(d) { return d.x; }));
+
+        var node = g2.selectAll(".node")
+          .data(root.descendants())
+          .enter().append("g")
+            .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+            .on("mouseover", function(d) {
+              d3.select(this).attr("r", 10).style("fill", "blue");
+              tool_tip.show(d);
+            })
+            .on("mouseout", function(d) {
+              d3.select(this).attr("r", 5.5).style("fill", "black");
+              tool_tip.hide();
+            });
+
+        node.append("circle")
+            .attr("r", 2.5);
+
+        node.append("text")
+            .attr("dy", 3)
+            .attr("x", function(d) { return d.children ? -8 : 8; })
+            .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+            .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+      });
+
+  </script>
+  </div>
+</div>
+
+  <div class="col-md-6">
+  <h2>Cell Line</h2>
+  <p class="instruction">Mouse over a leaf node to get the mean quantile normalized log count value of {{ gene.symbol }} for that Cell Line.</p>
+    <div id="CellLineImage" style="padding-top:30px; padding-bottom:70px;">
+      <script src="{{ url_for('static', filename='js/d3-tip.js') }}"></script>
+      <script>
+      var height = 800
+      var width = 500
+      var svg = d3.select("#CellLineImage").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+      // Define the div for the tooltip
+      var tool_tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-8, 0])
+        .html(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1)+"<br > <br >"+ "2.8" });
+        svg.call(tool_tip);
+
+      var g = svg.append("g")
+          .attr("transform", "translate(50,0)");
+
+      var tree = d3.tree()
+          .size([height, width - 160]);
+
+      var stratify = d3.stratify()
+          .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")) });
+
+      d3.csv("{{ url_for('static', filename='celllines.csv') }}", function(error, data) {
+        if (error) throw error;
+
+        var root = stratify(data)
+            .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
+
+        var link = g.selectAll(".link")
+          .data(tree(root).links())
+          .enter().append("path")
+            .attr("class", "link")
+            .attr("d", d3.linkHorizontal()
+                .x(function(d) { return d.y; })
+                .y(function(d) { return d.x; }));
+
+        var node = g.selectAll(".node")
+          .data(root.descendants())
+          .enter().append("g")
+            .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+            .on("mouseover", function(d) {
+              d3.select(this).attr("r", 10).style("fill", "blue");
+              tool_tip.show(d);
+            })
+            .on("mouseout", function(d) {
+              d3.select(this).attr("r", 5.5).style("fill", "black");
+              tool_tip.hide();
+            });
+
+
+        node.append("circle")
+            .attr("r", 2.5);
+
+        node.append("text")
+            .attr("dy", 3)
+            .attr("x", function(d) { return d.children ? -8 : 8; })
+            .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+            .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+      });
+
+  </script>
+  </div>
+</div>
+</div>
+</div>
+
+
 <script>
   var pie1 = new d3pie("association_metric", {
     "header": {
       "title": {
-        "text": "{{ association_count }}",
+        "text": 2535,
         "fontSize": 18,
         "font": "Sans-serif"
       },
@@ -323,7 +616,7 @@
   var pie1 = new d3pie("datasets_metric", {
     "header": {
       "title": {
-        "text": "{{ dataset_count }}",
+        "text": 59,
         "fontSize": 18,
         "font": "Sans-serif"
       },

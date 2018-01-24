@@ -1,4 +1,4 @@
-{%- if request.path == "/harmonizome/" %}
+{%- if request.path == "/harmonizome/"  or  request.path == "/harmonizome/complexquery"%}
 <div class="search-bar on-index-page">
 	<form accept-charset="utf-8" class="form-horizontal" action="search" method="GET">
 		<select class="entity-dropdown form-control all" name="t">
