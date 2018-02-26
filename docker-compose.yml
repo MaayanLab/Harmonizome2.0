@@ -8,9 +8,9 @@ services:
       MYSQL_USER: "harmonizome"
       MYSQL_PASSWORD: "emozinomrah"
     volumes:
-      - ./sql/:/docker-entrypoint-initdb.d/
+      - ./sql:/docker-entrypoint-initdb.d
   harmonizome:
-    build: ./Website
+    build: .
     image: harmonizome
     ports:
       - 5000:5000

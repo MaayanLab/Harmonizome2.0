@@ -9,9 +9,9 @@ RUN set -x \
         python3-dev \
         python3-pip \
     && rm -rf /var/lib/apt/lists/* \
-    && pip3 install --no-cache-dir --upgrade \
+    && pip3 install --upgrade \
         pip \
-    && pip3 install --no-cache-dir \
+    && pip3 install \
         flask \
         flask-sqlalchemy \
         flask-bcrypt \
