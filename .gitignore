@@ -1,5 +1,4 @@
-Website/harmonizome/static/processedFiles
-
+__pycache__
 Website/config.py
-
 Website/flask
+Website/harmonizome/static/processedFiles

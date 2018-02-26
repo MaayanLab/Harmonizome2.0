@@ -1,0 +1,22 @@
+version: '3'
+services:
+  database:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "emozinomrah"
+      MYSQL_DATABASE: "harmonizome"
+      MYSQL_USER: "harmonizome"
+      MYSQL_PASSWORD: "emozinomrah"
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d/
+  harmonizome:
+    build: ./Website
+    image: harmonizome
+    ports:
+      - 5000:5000
+    volumes:
+      - ./Website/:/harmonizome/
+      # If you have Website/config.py, comment out the next line
+      - ./Website/config.in.py:/harmonizome/config.py
+    links:
+      - database:database
